@@ -49,10 +49,12 @@ RUN /opt/android-sdk-linux/tools/bin/sdkmanager "platforms;android-26"
 
 RUN /opt/android-sdk-linux/tools/bin/sdkmanager "system-images;android-26;google_apis;x86_64"
 
-CMD /opt/tools/entrypoint.sh built-in
+# CMD /opt/tools/entrypoint.sh built-in
+
+# ENTRYPOINT [ "executable" ]
 
 # ADD entrypoint.sh /tools/entrypoint.sh
 
 # RUN chmod +x /tools/entrypoint.sh
 
-# ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/opt/tools/entrypoint.sh", "built-in", "launch_emulator"]
