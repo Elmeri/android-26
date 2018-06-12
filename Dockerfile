@@ -13,6 +13,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Dependencies to execute Android builds
 
 RUN dpkg --add-architecture i386 && apt-get update -yqq && apt-get install -y \
+  bzip2 \
   curl \
   expect \
   git \
@@ -20,11 +21,16 @@ RUN dpkg --add-architecture i386 && apt-get update -yqq && apt-get install -y \
   libgcc1:i386 \
   libncurses5:i386 \
   libstdc++6:i386 \
-  zlib1g:i386 \
+  net-tools \
   openjdk-8-jdk \
-  wget \
+  openssh-server \
+  socat \
+  software-properties-common \
+  ssh \
   unzip \
   vim \
+  wget \
+  zlib1g:i386 \
   && apt-get clean
 
 RUN groupadd android && useradd -d /opt/android-sdk-linux -g android android
@@ -44,3 +50,9 @@ RUN /opt/android-sdk-linux/tools/bin/sdkmanager "platforms;android-26"
 RUN /opt/android-sdk-linux/tools/bin/sdkmanager "system-images;android-26;google_apis;x86_64"
 
 CMD /opt/tools/entrypoint.sh built-in
+
+# ADD entrypoint.sh /tools/entrypoint.sh
+
+# RUN chmod +x /tools/entrypoint.sh
+
+# ENTRYPOINT ["/entrypoint.sh"]
