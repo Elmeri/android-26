@@ -36,7 +36,6 @@ sdkmanager --list
 echo EMULATOR  = "Requested API: ${EMULATOR} (${ARCH}) emulator."
 
 if [ "$2" = "launch_emulator" ]; then
-    echo "/opt/android-sdk-linux/tools/bin/avdmanager create avd -n test -k 'system-images;${EMULATOR};google_apis;${ARCH}'" 
-    echo "no" | /opt/android-sdk-linux/tools/bin/avdmanager create avd -n test -k "system-images;${EMULATOR};google_apis_playstore;${ARCH}" 
+    echo "no" | /opt/android-sdk-linux/tools/bin/avdmanager create avd -n test -k "system-images;${EMULATOR};google_apis;${ARCH}" 
     echo "no" | /opt/android-sdk-linux/tools/emulator -avd test -noaudio -no-window -gpu off -verbose -qemu -usbdevice tablet -vnc :0   
 fi
