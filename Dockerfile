@@ -9,11 +9,20 @@ ENV PATH "${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/tools/bin:${AND
 
 ENV DEBIAN_FRONTEND noninteractive
 
+
+# Expose ADB, ADB control and VNC ports
+EXPOSE 22
+EXPOSE 5037
+EXPOSE 5554
+EXPOSE 5555
+EXPOSE 5900
+EXPOSE 80
+EXPOSE 443
+
 # Install required tools
 # Dependencies to execute Android builds
 
 RUN dpkg --add-architecture i386 && apt-get update -yqq && apt-get install -y \
-  bzip2 \
   curl \
   expect \
   git \
@@ -25,7 +34,6 @@ RUN dpkg --add-architecture i386 && apt-get update -yqq && apt-get install -y \
   openjdk-8-jdk \
   openssh-server \
   socat \
-  software-properties-common \
   ssh \
   unzip \
   vim \

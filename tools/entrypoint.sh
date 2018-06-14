@@ -27,9 +27,12 @@ else
 fi
 
 ip=$(ifconfig  | grep 'inet'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $2}')
+echo $ip
 socat tcp-listen:5037,bind=$ip,fork tcp:127.0.0.1:5037 &
 socat tcp-listen:5554,bind=$ip,fork tcp:127.0.0.1:5554 &
 socat tcp-listen:5555,bind=$ip,fork tcp:127.0.0.1:5555 &
+socat tcp-listen:80,bind=$ip,fork tcp:127.0.0.1:80 &
+socat tcp-listen:443,bind=$ip,fork tcp:127.0.0.1:443 &
 
 sdkmanager --list
 
