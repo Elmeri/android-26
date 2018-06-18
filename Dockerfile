@@ -38,7 +38,6 @@ RUN dpkg --add-architecture i386 && apt-get update -yqq && apt-get install -y \
   unzip \
   vim \
   wget \
-  zlib1g:i386 \
   && apt-get clean
 
 RUN groupadd android && useradd -d /opt/android-sdk-linux -g android android
